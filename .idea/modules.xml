@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/nighthawk.iml" filepath="$PROJECT_DIR$/.idea/nighthawk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/nighthawkagent.iml" filepath="$PROJECT_DIR$/.idea/nighthawkagent.iml" />
     </modules>
   </component>
 </project>
