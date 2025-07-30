@@ -1,6 +1,6 @@
 import psutil, os, time
 import logging
-from config import CPU_THRESHOLD, MEMORY_THRESHOLD
+from config import CPU_THRESHOLD, MEMORY_THRESHOLD, SCAN_INTERVAL_SECONDS
 
 def run_process_monitor():
     usage = {}
@@ -26,3 +26,17 @@ def run_process_monitor():
 
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             continue
+
+    for proc, proc_usage in usage.items():
+        if proc_usage["cpu"] > CPU_THRESHOLD:
+            val = proc_usage["cpu"]
+            logging.warning(f"Process: {proc} - 🔥 High memory usage: {val}%")
+        elif proc_usage["mem"] > MEMORY_THRESHOLD:
+            val = proc_usage["mem"]
+            logging.warning(f"Process: {proc} - 🖥️ High CPU usage: {val}MB")
+
+def main():
+    print(f"== Process Monitor Thread ==")
+    while True:
+        run_process_monitor()
+        time.sleep(SCAN_INTERVAL_SECONDS)
